@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ankit Kumar | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: #121212;
+    }
+    nav h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover, .active {
+      color: #00f7ff;
+    }
+    section {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 80vh;
+      animation: fadeIn 0.8s ease;
+      padding: 20px;
+    }
+    section.active {
+      display: flex;
+    }
+    .intro img {
+      width: 160px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #00f7ff;
+      box-shadow: 0 0 10px #00f7ff;
+    }
+    .intro h2 span {
+      color: #00f7ff;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      background: #00f7ff;
+      color: black;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #00c3d6;
+    }
+    ul li {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    a.link {
+      color: #00f7ff;
+      text-decoration: underline;
+    }
+    .typing {
+      font-size: 18px;
+      color: #aaa;
+      margin-top: 10px;
+      height: 24px;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      .intro img {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>Ankit Portfolio</h1>
+    <ul>
+      <li><a onclick="showSection('home')" class="active" id="nav-home">Home</a></li>
+      <li><a onclick="showSection('skills')" id="nav-skills">Skills</a></li>
+      <li><a onclick="showSection('projects')" id="nav-projects">Projects</a></li>
+      <li><a onclick="showSection('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="active">
+    <div class="intro">
+      <img src="ankit-image.jpg" alt="Ankit Kumar">
+      <h2>Hello, I'm <span>Ankit Kumar</span></h2>
+      <div class="typing" id="typing"></div>
+      <div class="buttons">
+        <a class="btn" onclick="showSection('skills')">Explore Skills</a>
+        <a class="btn" onclick="showSection('projects')">View Projects</a>
+        <a class="btn" onclick="showSection('contact')">Get in Touch</a>
+        <a class="btn" href="resume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="intro">
+      <h2>My Skills</h2>
+      <ul>
+        <li>HTML5, CSS3, basic javascript</li>
+        <li>Python, c programming, c++</li>
+        <li>AI/ML, web development</li>
+        <li>canva, microsoft excel, powerpoint</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="intro">
+      <h2>My Projects</h2>
+      <ul>
+        <li>AI Sign Language to Speech Converter</li>
+        <li>EV Performance Monitoring System</li>
+        <li>AI Voting Detection System</li>
+        <li>Lateral Root Emergence Detection using Computer Vision</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="intro">
+      <h2>Contact Me</h2>
+      <p>Email: <strong>ankitcloud82@gmail.com</strong></p>
+      <p>LinkedIn: <a class="link" href="https://www.linkedin.com/in/ankit-kumar-singh-889392328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/ankit</a></p>
+      <p>GitHub: <a class="link" href="https://github.com/8292602052" target="_blank">github.com/ankit</a></p>
+    </div>
+  </section>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.getElementById('nav-' + sectionId).classList.add('active');
+    }
+
+    // Typing text effect
+    const typingElement = document.getElementById('typing');
+    const texts = ["Web Developer", "Python Programmer", "AI Enthusiast", "Tech Explorer"];
+    let textIndex = 0, charIndex = 0;
+    function typeEffect() {
+      if (charIndex <= texts[textIndex].length) {
+        typingElement.textContent = texts[textIndex].substring(0, charIndex++);
+        setTimeout(typeEffect, 100);
+      } else {
+        setTimeout(() => {
+          charIndex = 0;
+          textIndex = (textIndex + 1) % texts.length;
+          typeEffect();
+        }, 2000);
+      }
+    }
+    typeEffect();
+  </script>
+
+</body>
+</html>
